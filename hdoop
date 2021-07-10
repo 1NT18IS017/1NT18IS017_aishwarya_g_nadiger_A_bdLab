@@ -1,0 +1,56 @@
+Making a directory
+$ hadoop fs -mkdir deepti
+
+Empty files
+$ hadoop fs -touchz file1.txt
+$ hadoop fs -touchz file2.txt
+$ hadoop fs -ls
+Found 3 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-08 00:22 aishu
+-rw-r--r--   1 hdoop supergroup          0 2021-05-09 00:25 file1.txt
+-rw-r--r--   1 hdoop supergroup          0 2021-05-09 00:26 file2.txt
+
+Creating a directory and moving it into another
+$ hadoop fs -mkdir 1nt18is017
+$ hadoop fs -mv 1nt18is017 aishu
+$ hadoop fs -ls aishu/
+Found 1 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-09 00:29 aishu/1nt18is017
+
+Create a file name-usn.txt and move to usn
+$ gedit aishu_017.txt
+$ hadoop fs -copyFromLocal aishu_017.txt aishu/1nt18is017
+2021-05-08 00:59:49,309 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+$ hadoop fs -ls aishu/1nt18is017
+Found 1 items
+-rw-r--r--   1 hdoop supergroup         43 2021-05-09 00:59 aishu/1nt18is017/aishu_017.txt
+
+copy tolocal
+ hadoop fs -copyToLocal file1.txt
+$ hadoop fs -copyToLocal file2.txt
+
+mv command 
+$ hadoop fs -mv aishu/1nt18is017/aishu_017.txt aishu/
+$ hadoop fs -ls aishu/
+Found 2 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-09 01:14 aishu/1nt18is017
+-rw-r--r--   1 hdoop supergroup         43 2021-05-09 00:59 aishu/aishu_017.txt
+
+
+
+Size of each file in a directory
+$ hadoop fs -du aishu/
+0   0   aishu/1nt18is017
+43  43  aishu/aishu_017.txt
+
+Stat command
+$ hadoop fs -stat aishu/
+2021-05-08 19:44:14
+$ hadoop fs -stat aishu/1nt18is017/
+2021-05-08 19:44:14
+
+Append file
+$ hadoop fs -appendToFile aishu_017.txt file1.txt new.txt
+$ hadoop fs -cat new.txt
+Syntax to list ls command is hadoop fs -ls
+
